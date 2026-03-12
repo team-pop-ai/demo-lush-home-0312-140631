@@ -1,0 +1,223 @@
+{
+  "projects": [
+    {
+      "id": 47,
+      "name": "Riverside Modern",
+      "location": "Cedar Falls, IA",
+      "target_completion": "March 15, 2024",
+      "estimated_budget": "$165,000",
+      "status": "planning",
+      "description": "2,400 sq ft modern prefab home with open floor plan, high-end finishes, and energy-efficient systems. Includes 3 bedrooms, 2.5 baths, attached 2-car garage.",
+      "subcontractors": []
+    },
+    {
+      "id": 48,
+      "name": "Cedar Creek Cabin",
+      "location": "Decorah, IA", 
+      "target_completion": "April 20, 2024",
+      "estimated_budget": "$145,000",
+      "status": "rfp_sent",
+      "description": "1,800 sq ft rustic cabin design with exposed beams, stone fireplace, and wraparound porch. Perfect for rural setting.",
+      "subcontractors": [
+        {
+          "id": 101,
+          "name": "BuildTech Electrical",
+          "contact": "Mike Johnson",
+          "email": "mike@buildtech.com",
+          "trade": "Electrical",
+          "quote_status": "received",
+          "sent_date": "2024-01-10T09:00:00"
+        },
+        {
+          "id": 102,
+          "name": "Prairie Plumbing",
+          "contact": "Sarah Wilson",
+          "email": "sarah@prairieplumbing.com",
+          "trade": "Plumbing",
+          "quote_status": "pending",
+          "sent_date": "2024-01-10T09:00:00"
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Lakefront Retreat",
+      "location": "Clear Lake, IA",
+      "target_completion": "May 30, 2024",
+      "estimated_budget": "$195,000",
+      "status": "quotes_pending",
+      "description": "2,800 sq ft lakefront home with panoramic windows, composite decking, and luxury interior finishes.",
+      "subcontractors": []
+    },
+    {
+      "id": 50,
+      "name": "Prairie Family Home",
+      "location": "Ames, IA",
+      "target_completion": "June 10, 2024", 
+      "estimated_budget": "$155,000",
+      "status": "ready_to_build",
+      "description": "2,200 sq ft traditional family home with 4 bedrooms, 3 baths, and finished basement.",
+      "subcontractors": []
+    },
+    {
+      "id": 51,
+      "name": "Urban Townhome",
+      "location": "Des Moines, IA",
+      "target_completion": "July 15, 2024",
+      "estimated_budget": "$175,000",
+      "status": "planning",
+      "description": "2,000 sq ft contemporary townhome with rooftop deck and smart home integration.",
+      "subcontractors": []
+    },
+    {
+      "id": 52,
+      "name": "Country Homestead",
+      "location": "Winterset, IA",
+      "target_completion": "August 20, 2024",
+      "estimated_budget": "$140,000",
+      "status": "planning",
+      "description": "1,900 sq ft farmhouse style with covered front porch, mudroom, and pantry.",
+      "subcontractors": []
+    }
+  ],
+  "subcontractors": [
+    {
+      "id": 101,
+      "company": "BuildTech Electrical",
+      "contact_name": "Mike Johnson",
+      "email": "mike@buildtech.com",
+      "phone": "(319) 555-0123",
+      "specialty": "Electrical",
+      "specialties": ["Electrical", "Smart Home", "Solar"],
+      "rating": 4.8,
+      "projects_completed": 47,
+      "avg_response_time": "24 hours"
+    },
+    {
+      "id": 102,
+      "company": "Prairie Plumbing",
+      "contact_name": "Sarah Wilson", 
+      "email": "sarah@prairieplumbing.com",
+      "phone": "(319) 555-0124",
+      "specialty": "Plumbing",
+      "specialties": ["Plumbing", "Septic", "Water Heaters"],
+      "rating": 4.6,
+      "projects_completed": 52,
+      "avg_response_time": "12 hours"
+    },
+    {
+      "id": 103,
+      "company": "Hawkeye HVAC",
+      "contact_name": "Tom Anderson",
+      "email": "tom@hawkeyehvac.com",
+      "phone": "(319) 555-0125",
+      "specialty": "HVAC",
+      "specialties": ["HVAC", "Ductwork", "Heat Pumps"],
+      "rating": 4.9,
+      "projects_completed": 38,
+      "avg_response_time": "6 hours"
+    },
+    {
+      "id": 104,
+      "company": "Cyclone Framing",
+      "contact_name": "Dave Miller",
+      "email": "dave@cycloneframing.com",
+      "phone": "(319) 555-0126",
+      "specialty": "Framing",
+      "specialties": ["Framing", "Siding", "Decks"],
+      "rating": 4.7,
+      "projects_completed": 61,
+      "avg_response_time": "18 hours"
+    },
+    {
+      "id": 105,
+      "company": "Summit Roofing",
+      "contact_name": "Lisa Chang",
+      "email": "lisa@summitroofing.com",
+      "phone": "(319) 555-0127",
+      "specialty": "Roofing",
+      "specialties": ["Roofing", "Gutters", "Siding"],
+      "rating": 4.8,
+      "projects_completed": 44,
+      "avg_response_time": "8 hours"
+    },
+    {
+      "id": 106,
+      "company": "Midwest Foundation",
+      "contact_name": "Chris Taylor",
+      "email": "chris@midwestfoundation.com",
+      "phone": "(319) 555-0128",
+      "specialty": "Foundation",
+      "specialties": ["Foundation", "Concrete", "Excavation"],
+      "rating": 4.5,
+      "projects_completed": 35,
+      "avg_response_time": "24 hours"
+    },
+    {
+      "id": 107,
+      "company": "Elite Electrical",
+      "contact_name": "Jennifer Park",
+      "email": "jen@eliteelectrical.com",
+      "phone": "(319) 555-0129",
+      "specialty": "Electrical",
+      "specialties": ["Electrical", "Panels", "Outlets"],
+      "rating": 4.4,
+      "projects_completed": 29,
+      "avg_response_time": "36 hours"
+    },
+    {
+      "id": 108,
+      "company": "River Valley Plumbing",
+      "contact_name": "Mark Roberts",
+      "email": "mark@rvplumbing.com",
+      "phone": "(319) 555-0130",
+      "specialty": "Plumbing",
+      "specialties": ["Plumbing", "Fixtures", "Rough-in"],
+      "rating": 4.3,
+      "projects_completed": 33,
+      "avg_response_time": "48 hours"
+    }
+  ],
+  "historical_budgets": [
+    {
+      "project": "Riverside Ranch",
+      "year": 2023,
+      "size_sqft": 2200,
+      "total_cost": 158000,
+      "trades": {
+        "Foundation": 19500,
+        "Framing": 31200,
+        "Electrical": 12800,
+        "Plumbing": 15400,
+        "HVAC": 17600,
+        "Roofing": 13200,
+        "Insulation": 7800,
+        "Drywall": 15600,
+        "Flooring": 14200,
+        "Kitchen": 18900,
+        "Siding": 21800,
+        "Windows": 11200
+      }
+    },
+    {
+      "project": "Cedar Point Home",
+      "year": 2023,
+      "size_sqft": 1980,
+      "total_cost": 142000,
+      "trades": {
+        "Foundation": 17800,
+        "Framing": 28400,
+        "Electrical": 11200,
+        "Plumbing": 13600,
+        "HVAC": 15800,
+        "Roofing": 12200,
+        "Insulation": 6900,
+        "Drywall": 13800,
+        "Flooring": 12400,
+        "Kitchen": 16200,
+        "Siding": 19100,
+        "Windows": 9800
+      }
+    }
+  ]
+}

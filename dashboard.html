@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lush Home RFP Co-pilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #faf9f5;
+            color: #4a4845;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, button, label, .label, nav, .badge, th {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .app-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8e6dc;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: #141413;
+        }
+
+        .teams-integration {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #e3eef7;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #6a9bcc;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e8e6dc;
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .metric-card {
+            background: #ffffff;
+            border: 1px solid #e8e6dc;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .metric-number {
+            font-size: 32px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: #141413;
+            margin: 8px 0;
+        }
+
+        .metric-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #b0aea5;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .section-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #b0aea5;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 14px;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: #f0efe9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .project-item:hover {
+            background: #e8e6dc;
+        }
+
+        .project-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #141413;
+            margin-bottom: 4px;
+        }
+
+        .project-meta {
+            font-size: 13px;
+            color: #b0aea5;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .badge-green  { color: #788c5d; background: #e8eddf; }
+        .badge-orange { color: #d97757; background: #f5e6df; }
+        .badge-blue   { color: #6a9bcc; background: #e3eef7; }
+        .badge-yellow { color: #c4973a; background: #fdf3dd; }
+        .badge-gray   { color: #b0aea5; background: #f0efe9; }
+
+        .activity-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .activity-item {
+            padding: 12px 16px;
+            background: #f0efe9;
+            border-radius: 8px;
+            border-left: 3px solid #d97757;
+        }
+
+        .activity-time {
+            font-size: 11px;
+            color: #b0aea5;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .activity-text {
+            font-size: 14px;
+            color: #141413;
+        }
+
+        .btn-primary {
+            background: #d97757;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.15s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background: #b85e3a;
+        }
+
+        .notification-badge {
+            background: #d97757;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            position: absolute;
+            top: -6px;
+            right: -6px;
+        }
+
+        .icon-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <h1>🏠 Lush Home</h1>
+            <div class="teams-integration">
+                <span>🔗</span>
+                Connected to Teams
+            </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <div class="icon-wrapper">
+                <span style="font-size: 20px;">🔔</span>
+                <div class="notification-badge">3</div>
+            </div>
+            <span style="font-size: 14px; color: #b0aea5;">RJ Lange</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <div style="margin-bottom: 32px;">
+            <h2 style="font-size: 28px; font-weight: 700; color: #141413; margin-bottom: 8px;">RFP Co-pilot Dashboard</h2>
+            <p style="color: #b0aea5; font-size: 15px;">Automated subcontractor quote management across all active projects</p>
+        </div>
+
+        <div class="metrics-row">
+            <div class="metric-card">
+                <div class="metric-label">Total Projects</div>
+                <div class="metric-number">{{ total_projects }}</div>
+                <div style="font-size: 12px; color: #b0aea5;">in pipeline</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Active RFPs</div>
+                <div class="metric-number">{{ active_rfps }}</div>
+                <div style="font-size: 12px; color: #b0aea5;">awaiting quotes</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Quotes Pending</div>
+                <div class="metric-number">{{ quotes_pending }}</div>
+                <div style="font-size: 12px; color: #b0aea5;">need follow-up</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Time Saved</div>
+                <div class="metric-number">28h</div>
+                <div style="font-size: 12px; color: #788c5d;">this month</div>
+            </div>
+        </div>
+
+        <div class="two-col">
+            <div>
+                <div class="section-label">Active Projects</div>
+                <div class="card">
+                    <div class="project-list">
+                        {% for project in projects %}
+                        <div class="project-item" onclick="window.location.href='/project/{{ project.id }}'">
+                            <div class="project-info">
+                                <h3>{{ project.name }}</h3>
+                                <div class="project-meta">{{ project.location }} • Target: {{ project.target_completion }}</div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 12px;">
+                                {% if project.status == 'planning' %}
+                                    <span class="badge badge-gray">Planning</span>
+                                {% elif project.status == 'rfp_sent' %}
+                                    <span class="badge badge-blue">RFPs Sent</span>
+                                {% elif project.status == 'quotes_pending' %}
+                                    <span class="badge badge-orange">Quotes Pending</span>
+                                {% elif project.status == 'ready_to_build' %}
+                                    <span class="badge badge-green">Ready to Build</span>
+                                {% endif %}
+                                <span style="font-size: 16px; color: #b0aea5;">→</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e8e6dc;">
+                        <a href="/project/47" class="btn-primary">📋 View Project #47 - Live Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="section-label">Recent Activity</div>
+                <div class="card">
+                    <div class="activity-feed">
+                        {% for activity in activity_feed %}
+                        <div class="activity-item">
+                            <div class="activity-time">{{ activity.time }}</div>
+                            <div class="activity-text">{{ activity.action }}</div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div style="margin-top: 24px;">
+                    <div class="section-label">Quick Actions</div>
+                    <div class="card">
+                        <div style="display: flex; flex-direction: column; gap: 12px;">
+                            <button class="btn-primary" onclick="alert('In production: Creates new project from Teams channel')">🆕 New Project from Teams</button>
+                            <button class="btn-primary" onclick="alert('In production: Sends follow-ups to overdue subcontractors')">📧 Send Follow-ups</button>
+                            <button class="btn-primary" onclick="alert('In production: Generates budget report for all active projects')">📊 Generate Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simulate live updates
+        setInterval(function() {
+            const activities = document.querySelectorAll('.activity-time');
+            activities.forEach(activity => {
+                const current = activity.textContent;
+                if (current.includes('min ago')) {
+                    const minutes = parseInt(current) + 1;
+                    activity.textContent = minutes + ' min ago';
+                }
+            });
+        }, 60000); // Update every minute
+    </script>
+</body>
+</html>

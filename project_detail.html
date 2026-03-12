@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project {{ project.name }} - Lush Home RFP Co-pilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #faf9f5;
+            color: #4a4845;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, button, label, .label, nav, .badge, th {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .app-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8e6dc;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: #141413;
+        }
+
+        .back-link {
+            color: #6a9bcc;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e8e6dc;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section-label {
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #b0aea5;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 14px;
+        }
+
+        .project-header {
+            border-bottom: 1px solid #e8e6dc;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .project-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #141413;
+            margin-bottom: 8px;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 24px;
+            color: #b0aea5;
+            font-size: 14px;
+        }
+
+        .three-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .btn-primary {
+            background: #d97757;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.15s;
+            margin-right: 12px;
+            margin-bottom: 12px;
+        }
+
+        .btn-primary:hover {
+            background: #b85e3a;
+        }
+
+        .btn-secondary {
+            background: #f0efe9;
+            color: #141413;
+            border: 1px solid #e8e6dc;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 12px;
+            margin-bottom: 12px;
+        }
+
+        .btn-secondary:hover {
+            background: #e8e6dc;
+        }
+
+        .trade-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .trade-button {
+            padding: 12px 16px;
+            background: #f0efe9;
+            border: 1px solid #e8e6dc;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.15s;
+        }
+
+        .trade-button:hover {
+            background: #e8e6dc;
+        }
+
+        .trade-button.selected {
+            background: #f5e6df;
+            border-color: #d97757;
+            color: #d97757;
+        }
+
+        .table-wrapper {
+            background: #ffffff;
+            border: 1px solid #e8e6dc;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            font-family: 'Roboto', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            color: #b0aea5;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e8e6dc;
+            background: #faf9f5;
+        }
+
+        td {
+            padding: 14px 16px;
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            border-bottom: 1px solid #f0efe9;
+            color: #4a4845;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .badge-green  { color: #788c5d; background: #e8eddf; }
+        .badge-orange { color: #d97757; background: #f5e6df; }
+        .badge-blue   { color: #6a9bcc; background: #e3eef7; }
+        .badge-yellow { color: #c4973a; background: #fdf3dd; }
+        .badge-gray   { color: #b0aea5; background: #f0efe9; }
+
+        .loading-state {
+            text-align: center;
+            color: #d97757;
+            padding: 48px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+        }
+
+        .rfp-content {
+            background: #f0efe9;
+            border: 1px solid #e8e6dc;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: monospace;
+            font-size: 13px;
+            white-space: pre-wrap;
+            margin: 16px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .checkbox-list {
+            margin: 16px 0;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0efe9;
+        }
+
+        .checkbox-item:last-child {
+            border-bottom: none;
+        }
+
+        input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+        }
+
+        .sub-info {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sub-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sub-name {
+            font-weight: 600;
+            color: #141413;
+        }
+
+        .sub-meta {
+            font-size: 12px;
+            color: #b0aea5;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #ffffff;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: 5vh auto;
+            padding: 24px;
+        }
+
+        .modal h3 {
+            margin-bottom: 16px;
+            color: #141413;
+        }
+
+        .close {
+            float: right;
+            font-size: 24px;
+            cursor: pointer;
+            color: #b0aea5;
+        }
+
+        .budget-analysis {
+            margin-top: 20px;
+        }
+
+        .budget-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0efe9;
+        }
+
+        .budget-item:last-child {
+            border-bottom: none;
+        }
+
+        .variance-high {
+            color: #c4973a;
+            font-weight: 600;
+        }
+
+        .variance-normal {
+            color: #788c5d;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div>
+            <a href="/" class="back-link">← Back to Dashboard</a>
+        </div>
+        <div>
+            <span style="font-size: 14px; color: #b0aea5;">Project Management</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <div class="project-header">
+                <h1>{{ project.name }}</h1>
+                <div class="project-meta">
+                    <span>📍 {{ project.location }}</span>
+                    <span>📅 Target: {{ project.target_completion }}</span>
+                    <span>💰 Budget: {{ project.estimated_budget }}</span>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+                <button class="btn-primary" onclick="showRfpModal()">🚀 Generate & Send RFPs</button>
+                <button class="btn-secondary" onclick="loadBudgetAnalysis()">📊 Budget Analysis</button>
+                <button class="btn-secondary" onclick="alert('In production: Opens Teams channel for this project')">💬 Open in Teams</button>
+            </div>
+
+            <div class="section-label">Project Description</div>
+            <p style="margin-bottom: 24px;">{{ project.description }}</p>
+        </div>
+
+        <div class="three-col">
+            <div class="card">
+                <div class="section-label">RFP Status</div>
+                <div style="margin-bottom: 16px;">
+                    {% if project.status == 'planning' %}
+                        <span class="badge badge-gray">Ready to Send RFPs</span>
+                    {% elif project.status == 'rfp_sent' %}
+                        <span class="badge badge-blue">RFPs Sent</span>
+                        <p style="margin-top: 8px; font-size: 13px; color: #b0aea5;">
+                            Sent to {{ project.subcontractors|length }} subcontractors
+                        </p>
+                    {% endif %}
+                </div>
+
+                {% if project.subcontractors %}
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Subcontractor</th>
+                                    <th>Trade</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sub in project.subcontractors %}
+                                <tr>
+                                    <td>{{ sub.name }}</td>
+                                    <td>{{ sub.trade }}</td>
+                                    <td>
+                                        {% if sub.quote_status == 'pending' %}
+                                            <span class="badge badge-orange">Pending</span>
+                                        {% elif sub.quote_status == 'received' %}
+                                            <span class="badge badge-green">Received</span>
+                                        {% elif sub.quote_status == 'overdue' %}
+                                            <span class="badge badge-yellow">Overdue</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="card">
+                <div class="section-label">Quote Summary</div>
+                <div style="text-align: center; padding: 20px;">
+                    <div style="font-size: 24px; font-weight: 700; color: #141413;">3 of 8</div>
+                    <div style="font-size: 14px; color: #b0aea5; margin-top: 4px;">quotes received</div>
+                    <div style="margin-top: 16px;">
+                        <span class="badge badge-green">2 on time</span>
+                        <span class="badge badge-yellow">5 pending</span>
+                        <span class="badge badge-orange">1 overdue</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="section-label">Next Actions</div>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <button class="btn-secondary" onclick="alert('In production: Sends automated follow-up emails')">📧 Send Follow-ups</button>
+                    <button class="btn-secondary" onclick="alert('In production: Finds additional subcontractors')">👥 Find More Subs</button>
+                    <button class="btn-secondary" onclick="alert('In production: Extends deadline by 3 days')">⏰ Extend Deadline</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="budgetAnalysis" class="card" style="display: none;">
+            <div class="section-label">Budget Analysis</div>
+            <div id="budgetContent">
+                <div class="loading-state">
+                    <div style="font-size:32px; margin-bottom:12px;">⏳</div>
+                    Analyzing historical pricing data...
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- RFP Generation Modal -->
+    <div id="rfpModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRfpModal()">&times;</span>
+            <h3>Generate & Send RFPs</h3>
+            
+            <div class="section-label">Select Trade</div>
+            <div class="trade-selector">
+                <div class="trade-button" onclick="selectTrade('Electrical')">⚡ Electrical</div>
+                <div class="trade-button" onclick="selectTrade('Plumbing')">🔧 Plumbing</div>
+                <div class="trade-button" onclick="selectTrade('HVAC')">🌡️ HVAC</div>
+                <div class="trade-button" onclick="selectTrade('Framing')">🏗️ Framing</div>
+                <div class="trade-button" onclick="selectTrade('Roofing')">🏠 Roofing</div>
+                <div class="trade-button" onclick="selectTrade('Foundation')">🏛️ Foundation</div>
+            </div>
+
+            <button class="btn-primary" onclick="generateRfp()" id="generateBtn" style="display: none;">🤖 Generate RFP with AI</button>
+            
+            <div id="rfpContent" style="display: none;">
+                <div class="section-label">Generated RFP</div>
+                <div id="rfpText" class="rfp-content"></div>
+                
+                <div class="section-label">Select Subcontractors</div>
+                <div id="subcontractorList" class="checkbox-list"></div>
+                
+                <button class="btn-primary" onclick="sendRfps()">📧 Send RFPs</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedTrade = '';
+        let generatedRfp = '';
+
+        function showRfpModal() {
+            document.getElementById('rfpModal').style.display = 'block';
+        }
+
+        function closeRfpModal() {
+            document.getElementById('rfpModal').style.display = 'none';
+            selectedTrade = '';
+            generatedRfp = '';
+            document.getElementById('rfpContent').style.display = 'none';
+            document.getElementById('generateBtn').style.display = 'none';
+            document.querySelectorAll('.trade-button').forEach(btn => btn.classList.remove('selected'));
+        }
+
+        function selectTrade(trade) {
+            selectedTrade = trade;
+            document.querySelectorAll('.trade-button').forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+            document.getElementById('generateBtn').style.display = 'block';
+        }
+
+        async function generateRfp() {
+            if (!selectedTrade) return;
+
+            const generateBtn = document.getElementById('generateBtn');
+            generateBtn.innerHTML = '⏳ Generating with AI...';
+            generateBtn.disabled = true;
+
+            try {
+                const response = await fetch(`/generate_rfp/{{ project.id }}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ trade: selectedTrade })
+                });
+
+                const data = await response.json();
+                generatedRfp = data.rfp_content;
+                
+                document.getElementById('rfpText').textContent = generatedRfp;
+                document.getElementById('rfpContent').style.display = 'block';
+                
+                // Load relevant subcontractors
+                loadSubcontractors();
+
+            } catch (error) {
+                alert('Error generating RFP. Please try again.');
+            } finally {
+                generateBtn.innerHTML = '🤖 Generate RFP with AI';
+                generateBtn.disabled = false;
+            }
+        }
+
+        function loadSubcontractors() {
+            const subList = document.getElementById('subcontractorList');
+            const relevantSubs = {{ subcontractors | tojson }}.filter(sub => 
+                sub.specialty.toLowerCase().includes(selectedTrade.toLowerCase()) ||
+                sub.specialties.some(s => s.toLowerCase().includes(selectedTrade.toLowerCase()))
+            );
+
+            subList.innerHTML = relevantSubs.map(sub => `
+                <div class="checkbox-item">
+                    <input type="checkbox" id="sub_${sub.id}" value="${sub.id}">
+                    <div class="sub-info">
+                        <div class="sub-details">
+                            <div class="sub-name">${sub.company}</div>
+                            <div class="sub-meta">${sub.contact_name} • ${sub.email} • Rating: ${sub.rating}/5</div>
+                        </div>
+                        <div class="badge badge-blue">${sub.specialty}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function sendRfps() {
+            const selectedSubs = Array.from(document.querySelectorAll('#subcontractorList input:checked'))
+                .map(input => parseInt(input.value));
+
+            if (selectedSubs.length === 0) {
+                alert('Please select at least one subcontractor.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`/send_rfps/{{ project.id }}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        subcontractors: selectedSubs,
+                        rfp_content: generatedRfp
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert(`✅ RFPs sent successfully to ${data.sent_count} subcontractors!`);
+                    closeRfpModal();
+                    // Refresh page to show updated status
+                    setTimeout(() => location.reload(), 1000);
+                }
+
+            } catch (error) {
+                alert('Error sending RFPs. Please try again.');
+            }
+        }
+
+        async function loadBudgetAnalysis() {
+            const budgetDiv = document.getElementById('budgetAnalysis');
+            budgetDiv.style.display = 'block';
+            
+            try {
+                const response = await fetch(`/budget_analysis/{{ project.id }}`);
+                const data = await response.json();
+                
+                const content = `
+                    <div style="margin-bottom: 24px;">
+                        <h3>Budget Estimate: ${data.total_budget_estimate}</h3>
+                        <p style="color: #b0aea5; margin-top: 4px;">${data.confidence}</p>
+                    </div>
+                    
+                    <div class="budget-analysis">
+                        <div class="section-label">Trade Breakdown</div>
+                        ${data.trade_breakdown.map(trade => `
+                            <div class="budget-item">
+                                <div>
+                                    <div style="font-weight: 600;">${trade.trade}</div>
+                                    <div style="font-size: 13px; color: #b0aea5;">${trade.estimate}</div>
+                                </div>
+                                <div class="${trade.status === 'high' ? 'variance-high' : 'variance-normal'}">
+                                    ${trade.variance}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    ${data.anomalies.length > 0 ? `
+                        <div style="margin-top: 24px;">
+                            <div class="section-label">Pricing Anomalies</div>
+                            ${data.anomalies.map(anomaly => `
+                                <div style="background: #fdf3dd; border: 1px solid #f0dba0; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+                                    <div style="font-weight: 600; color: #c4973a;">${anomaly.trade}</div>
+                                    <div style="font-size: 14px; margin-top: 4px;">${anomaly.issue}</div>
+                                    <div style="font-size: 13px; color: #b0aea5; margin-top: 8px;">
+                                        💡 ${anomaly.recommendation}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    ` : ''}
+                `;
+                
+                document.getElementById('budgetContent').innerHTML = content;
+                
+            } catch (error) {
+                document.getElementById('budgetContent').innerHTML = `
+                    <div style="text-align: center; color: #c0463a; padding: 24px;">
+                        Error loading budget analysis. Using historical averages.
+                    </div>
+                `;
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('rfpModal');
+            if (event.target == modal) {
+                closeRfpModal();
+            }
+        }
+    </script>
+</body>
+</html>
